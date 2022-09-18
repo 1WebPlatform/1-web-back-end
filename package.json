@@ -29,6 +29,8 @@
     "@nestjs/swagger": "^6.1.2",
     "@nestx-log4js/core": "^1.5.1",
     "cache-manager": "^4.1.0",
+    "nest-postgres": "0.0.3",
+    "pg": "^8.8.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"
