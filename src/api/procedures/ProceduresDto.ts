@@ -3,7 +3,7 @@ import { BodyAny } from '../../interface/BodyAny';
 
 export class ProceduresDto {
   @ApiProperty()
-  tec: string;
+  schema: string;
   @ApiProperty()
   name: string;
   @ApiProperty()

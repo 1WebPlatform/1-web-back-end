@@ -1,5 +1,5 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import {Body, Controller, Headers, Post, Request} from '@nestjs/common';
+import {ApiBearerAuth, ApiHeader, ApiTags} from '@nestjs/swagger';
 import { ProceduresService } from './ProceduresService';
 import { ProceduresDto } from './ProceduresDto';
 
@@ -8,8 +8,10 @@ import { ProceduresDto } from './ProceduresDto';
 export class ProceduresController {
   constructor(private readonly proceduresService: ProceduresService) {}
   @Post()
-  async procedures(@Body() proceduresDto: ProceduresDto): Promise<any> {
-    console.log(proceduresDto);
-    return await this.proceduresService.procedures(proceduresDto);
+  async procedures(
+      @Body() proceduresDto: ProceduresDto,
+      @Headers('authorization') authorization: string,
+  ): Promise<any> {
+    return await this.proceduresService.procedures(proceduresDto, authorization);
   }
 }

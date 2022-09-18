@@ -4,9 +4,11 @@ import { ConfigModule } from '@nestjs/config';
 import { PostgresModule } from 'nest-postgres';
 import { configModule } from 'configure.root';
 import { ProceduresModule } from './api/procedures/ProceduresModule';
+import {RightModule} from "./api/right/RightModule";
 @Module({
   imports: [
     ProceduresModule,
+    RightModule,
     Log4jsModule.forRoot(),
     ConfigModule.forRoot(),
     configModule,
