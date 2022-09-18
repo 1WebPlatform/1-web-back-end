@@ -1,20 +1,20 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { Log4jsModule } from '@nestx-log4js/core';
-import {ConfigModule} from "@nestjs/config";
-import {PostgresModule} from "nest-postgres";
+import { ConfigModule } from '@nestjs/config';
+import { PostgresModule } from 'nest-postgres';
 import { configModule } from 'configure.root';
+import { ProceduresModule } from './api/procedures/ProceduresModule';
 @Module({
   imports: [
+    ProceduresModule,
     Log4jsModule.forRoot(),
     ConfigModule.forRoot(),
     configModule,
     PostgresModule.forRoot({
-      connectionString: process.env.URL_BD
-    })
+      connectionString: process.env.URL_BD,
+    }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
