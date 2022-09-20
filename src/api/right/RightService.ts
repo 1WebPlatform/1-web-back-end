@@ -16,4 +16,9 @@ export class RightService {
         const result = await this.pg.query(`select * from tec.right_user_check('${token}', '${id}');`);
         return result.rows;
     }
+
+    public  async  getRightUser(token:string){
+        const result = await this.pg.query(`select * from tec.token_authentication('${token}');`);
+        return result.rows[0];
+    }
 }
