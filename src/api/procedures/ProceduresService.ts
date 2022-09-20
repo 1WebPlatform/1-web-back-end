@@ -4,14 +4,12 @@ import { InjectClient } from 'nest-postgres';
 import { ProceduresDto } from './ProceduresDto';
 import { BodyAny } from '../../interface/BodyAny';
 import { RightService } from '../right/RightService';
-import {Reflector} from "@nestjs/core";
 
 @Injectable()
 export class ProceduresService {
   constructor(
     @InjectClient() private readonly pg: Client,
-    private readonly rightService: RightService,
-    private reflector: Reflector,
+    private readonly rightService: RightService
   ) {}
   public async procedures(proceduresDto: ProceduresDto, authorization:string) {
     const check_fun = await this.rightService.checkRightFun(proceduresDto.schema, proceduresDto.name);
