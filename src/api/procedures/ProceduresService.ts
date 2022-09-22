@@ -4,6 +4,7 @@ import { InjectClient } from 'nest-postgres';
 import { ProceduresDto } from './ProceduresDto';
 import { BodyAny } from '../../interface/BodyAny';
 import { RightService } from '../right/RightService';
+import {parserTextStructure} from "../../lib/parserTextStructure";
 
 @Injectable()
 export class ProceduresService {
@@ -28,6 +29,7 @@ export class ProceduresService {
             proceduresDto.name
         }(${ProceduresService.generatorBody(proceduresDto.body)})`,
     );
+    parserTextStructure(result);
     return result.rows;
   }
 
@@ -35,11 +37,11 @@ export class ProceduresService {
     let sql = '';
     for (const key in body) {
       if (typeof body[key] === 'string') {
-        sql += `${key} => '${body[key]}'`;
+        sql += `${key} => '${body[key]}',`;
       } else {
-        sql += `${key} => ${body[key]}`;
+        sql += `${key} => ${body[key]},`;
       }
     }
-    return sql;
+    return sql.substring(0, sql.length - 1);
   }
 }

@@ -12,6 +12,7 @@ export class ScreenService {
     ) {}
     public async screen(id: number, authorization:string){
         const right = await this.rightService.getRightUser(authorization);
+        console.log(right);
         const result = await this.pg.query(`select * from config.screen_get_id_component(${id})`);
         return result.rows[0].screen;
     }
