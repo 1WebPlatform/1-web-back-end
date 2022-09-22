@@ -8,7 +8,6 @@ export function parserTextStructure(result: QueryResult){
                 if (key == "_error"){
                     r[key] = parserError(r[key])
                 }
-                console.log(r[key]);
             }
         });
     }
@@ -16,6 +15,5 @@ export function parserTextStructure(result: QueryResult){
 }
 
 function parserError(data:any){
-    console.log(data);
     return data;
 }
