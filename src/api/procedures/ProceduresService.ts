@@ -14,9 +14,10 @@ export class ProceduresService {
   ) {}
   public async procedures(proceduresDto: ProceduresDto, authorization:string) {
     const check_fun = await this.rightService.checkRightFun(proceduresDto.schema, proceduresDto.name);
+  
     if (check_fun?.[0]?.id_right){
-      const check_user = await this.rightService.checkRightUser(authorization, check_fun[0].id_right);
-      if (check_user){
+      const check_user = await this.rightService.checkRightUser(authorization, check_fun[0].id_right);     
+      if (check_user[0].error_ !== null){
         return check_user;
       }
     }
@@ -29,7 +30,7 @@ export class ProceduresService {
             proceduresDto.name
         }(${ProceduresService.generatorBody(proceduresDto.body)})`,
     );
-    parserTextStructure(result);
+    parserTextStructure(result);   
     return result.rows;
   }
 
