@@ -11,17 +11,17 @@ export class ScreenService {
   ) {}
 
   public async screen(id: number, authorization: string) {
-    const right = await this.rightService.getRightUser(authorization);
+    const right = await this.rightService.getRightUser(authorization);   
     const result = await this.pg.query(
       `select * from config.screen_get_id_component(${id})`,
-    );
-    return await this.checkScreen(right?.right, result.rows[0]?.screen);
+    );  
+    return await this.checkScreen(right?.[0]?.right, result.rows[0]?.screen);
   }
 
   private async checkScreen(right: number[], screen: any) {
     let check_screen: any = true;
     if (screen.screen.id_right) {
-      check_screen = right.filter(
+      check_screen = right?.filter(
         (e: any) => e === screen.screen.id_right,
       ).length;
     }
