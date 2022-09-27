@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Client } from 'pg';
 import { InjectClient } from 'nest-postgres';
-import { parserTextStructure } from '../../lib/parserTextStructure';
+import { parserBdStructure } from '../../lib/parserBdStructure';
 
 @Injectable()
 export class RightService {
@@ -11,22 +11,19 @@ export class RightService {
     const result = await this.pg.query(
       `select * from tec.right_fun_get_find('${schema}', '${name}')`,
     );
-    parserTextStructure(result);
-    return result.rows;
+    return parserBdStructure(result);
   }
   public async checkRightUser(token: string, id: number) {
     const result = await this.pg.query(
       `select * from tec.right_user_check('${token}', '${id}');`,
     );
-    parserTextStructure(result);
-    return result.rows;
+    return parserBdStructure(result);
   }
 
   public async getRightUser(token: string) {
     const result = await this.pg.query(
       `select * from tec.token_get_id('${token}');`,
     );
-    parserTextStructure(result);
-    return result.rows[0];
+    return parserBdStructure(result);
   }
 }
