@@ -24,7 +24,7 @@ export class ProceduresService {
         check_fun[0].id_right,
       );
       if (check_user[0].error_ !== null) {
-        return check_user;
+        return check_user[0];
       }
     }
     return this.proceduresStart(proceduresDto);
