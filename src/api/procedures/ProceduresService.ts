@@ -4,7 +4,7 @@ import { InjectClient } from 'nest-postgres';
 import { ProceduresDto } from './ProceduresDto';
 import { BodyAny } from '../../interface/BodyAny';
 import { RightService } from '../right/RightService';
-import { parserTextStructure } from '../../lib/parserTextStructure';
+import { parserBdStructure } from '../../lib/parserBdStructure';
 
 @Injectable()
 export class ProceduresService {
@@ -36,8 +36,7 @@ export class ProceduresService {
         proceduresDto.name
       }(${ProceduresService.generatorBody(proceduresDto.body)})`,
     );
-    parserTextStructure(result);
-    return result.rows;
+    return parserBdStructure(result);
   }
 
   private static generatorBody(body: BodyAny): string {
