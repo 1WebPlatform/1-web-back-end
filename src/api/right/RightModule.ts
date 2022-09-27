@@ -4,6 +4,6 @@ import { RightService } from './RightService';
 @Module({
   controllers: [],
   providers: [RightService],
-  exports: [RightService]
+  exports: [RightService],
 })
 export class RightModule {}

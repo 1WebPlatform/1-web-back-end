@@ -4,8 +4,8 @@ import { ConfigModule } from '@nestjs/config';
 import { PostgresModule } from 'nest-postgres';
 import { configModule } from 'configure.root';
 import { ProceduresModule } from './api/procedures/ProceduresModule';
-import {RightModule} from "./api/right/RightModule";
-import {ScreenModule} from "./api/screen/ScreenModule";
+import { RightModule } from './api/right/RightModule';
+import { ScreenModule } from './api/screen/ScreenModule';
 @Module({
   imports: [
     ScreenModule,
