@@ -22,8 +22,8 @@ export class ProceduresService {
       const check_user = await this.rightService.checkRightUser(
         authorization,
         check_fun[0].id_right,
-      );
-      if (check_user[0].error_ !== null) {
+      );     
+      if (check_user?.[0]?.error_ !== undefined && check_user?.[0]?.error_ !== null) {
         return check_user[0];
       }
     }
@@ -35,7 +35,7 @@ export class ProceduresService {
       `select * from ${proceduresDto.schema}.${
         proceduresDto.name
       }(${ProceduresService.generatorBody(proceduresDto.body)})`,
-    );
+    );   
     return parserBdStructure(result);
   }
 
