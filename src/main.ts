@@ -9,8 +9,7 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.useLogger(app.get(Log4jsLogger));
   app.enableCors();
-  console.log(join(__dirname, '../../public'));  
-  app.useStaticAssets(join(__dirname, '../../public'),{
+  app.useStaticAssets(join(__dirname, process.env.URL_STATIC as string), {
     prefix: "/public/"
   })
   const config = new DocumentBuilder()
