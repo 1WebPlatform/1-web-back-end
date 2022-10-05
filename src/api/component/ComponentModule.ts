@@ -5,6 +5,6 @@ import { ComponentService } from './ComponentService'
   imports: [],
   controllers: [ComponentControllers],
   providers: [ComponentService],
-  exports: [],
+  exports: [ComponentService],
 })
 export class ComponentModule {}

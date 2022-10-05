@@ -7,10 +7,9 @@ import { ComponentService } from './ComponentService';
 export class ComponentControllers {
   constructor(private readonly componentService: ComponentService) {}
   @Get(':id')
-  /** контроллер для тестов */
   async getComponentIdSelectCss(
     @Param('id') id: number,
   ): Promise<any> {
-
+    
   }
 }
