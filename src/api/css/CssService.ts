@@ -8,9 +8,20 @@ import { ComponentService } from '../component/ComponentService';
 export class CssService {
   constructor(
     @InjectClient() private readonly pg: Client,
-    private readonly componentService:ComponentService
-  ) {}
-    public async generatorCssComponentId(id: number){
-      const css = await this.componentService.getComponentIdSelectCss(id);
-    }
+    private readonly componentService: ComponentService
+  ) { }
+  public async generatorCssComponentId(id: number) {
+    const css = await this.componentService.getComponentIdSelectCss(id);
+  }
+  private generatorCss(style: any) {
+    let css_result = "";
+    style.map((elem: any) => {
+      css_result += `${elem.select}{`;
+      for (const key in elem.css) {
+        const element = elem.css[key];
+        css_result += `${key}:${element};`;
+      }
+      css_result += `}`;
+    });
+  }
 }
