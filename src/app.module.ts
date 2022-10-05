@@ -6,10 +6,12 @@ import { configModule } from 'configure.root';
 import { ProceduresModule } from './api/procedures/ProceduresModule';
 import { RightModule } from './api/right/RightModule';
 import { ScreenModule } from './api/screen/ScreenModule';
+import { CssModule } from './api/css/CssModule';
 @Module({
   imports: [
     ScreenModule,
     ProceduresModule,
+    CssModule,
     RightModule,
     Log4jsModule.forRoot(),
     ConfigModule.forRoot(),
