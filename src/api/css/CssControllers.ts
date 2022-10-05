@@ -8,9 +8,9 @@ export class CssControllers {
   constructor(private readonly cssService: CssService) {}
   @Get(':id')
   /** контроллер для тестов */
-  async generationCss(
+  async generationCssComponentId(
     @Param('id') id: number,
   ): Promise<any> {
-    this.cssService.generatorCss(id);
+    this.cssService.generatorCssComponentId(id);
   }
 }

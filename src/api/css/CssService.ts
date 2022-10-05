@@ -10,7 +10,7 @@ export class CssService {
     @InjectClient() private readonly pg: Client,
     private readonly componentService:ComponentService
   ) {}
-    public async generatorCss(id: number){
+    public async generatorCssComponentId(id: number){
       const css = await this.componentService.getComponentIdSelectCss(id);
     }
 }
