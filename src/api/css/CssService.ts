@@ -8,5 +8,7 @@ export class CssService {
   constructor(
     @InjectClient() private readonly pg: Client,
   ) {}
-
+    public async generatorCss(id: number){
+      
+    }
 }
