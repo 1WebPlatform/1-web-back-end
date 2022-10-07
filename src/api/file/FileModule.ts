@@ -7,4 +7,4 @@ import { FileService } from './FileService';
   providers: [FileService],
   exports: [FileService],
 })
-export class ProceduresModule {}
+export class FileModule {}

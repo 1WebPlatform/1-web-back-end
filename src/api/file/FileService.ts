@@ -23,10 +23,10 @@ export class FileService {
   setFile(pathFile:string, fileName:string, data: string) {
     if (pathFile) {
       !this.fs.existsSync(`${pathFile}`) && this.fs.mkdirSync(`${pathFile}`, { recursive: true })
-    }
-    this.fs.open(pathFile, 'w', (err: Error) => {
+    }    
+    this.fs.open(`${pathFile}\\${fileName}`, 'w', (err: Error) => {
       if (err) throw err;
     });
-    this.fs.writeFileSync(pathFile, data);
+    this.fs.writeFileSync(`${pathFile}\\${fileName}`, data);
   }
 }
