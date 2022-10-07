@@ -12,6 +12,11 @@ export class CssService {
   ) { }
   public async generatorCssComponentId(id: number) {
     const css = await this.componentService.getComponentIdSelectCss(id);
+    return this.generatorCss(css);
+  }
+  public async generatorCssComponentTemplateId(id: number) {
+    const css = await this.componentService.getComponentTemplateCssId(id);
+    return this.generatorCss(css);
   }
   private generatorCss(style: any) {
     let css_result = "";
