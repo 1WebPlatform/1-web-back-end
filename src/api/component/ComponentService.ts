@@ -12,7 +12,7 @@ export class ComponentService {
     const result = await this.pg.query(
       `select * from config.component_select_css_get_id(${id})`,
     );
-    return result.rows?.[0]?.css;
+    return result.rows?.[0];
   }
   public async getComponentTemplateCssId(id:number){
     const result = await this.pg.query(
