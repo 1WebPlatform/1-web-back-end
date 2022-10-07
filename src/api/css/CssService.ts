@@ -1,22 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { Client } from 'pg';
 import { InjectClient } from 'nest-postgres';
-import { parserBdStructure } from '../../lib/parserBdStructure';
 import { ComponentService } from '../component/ComponentService';
+import { FileService } from '../file/FileService';
 
 @Injectable()
 export class CssService {
   constructor(
     @InjectClient() private readonly pg: Client,
-    private readonly componentService: ComponentService
+    private readonly componentService: ComponentService,
+    private readonly fileService: FileService
   ) { }
   public async generatorCssComponentId(id: number) {
     const css = await this.componentService.getComponentIdSelectCss(id);
-    return this.generatorCss(css);
+    const textCss = this.generatorCss(JSON.parse(css));
   }
   public async generatorCssComponentTemplateId(id: number) {
-    const css = await this.componentService.getComponentTemplateCssId(id);
-    return this.generatorCss(css);
+    const template = await this.componentService.getComponentTemplateCssId(id);
+    const textCss = this.generatorCss(JSON.parse(template.css));
+    this.fileService.setFile(
+      `${process.env.URL_STATIC}\\style\\template`,
+      `${template.name}.css`,
+      textCss
+    );
   }
   private generatorCss(style: any) {
     let css_result = "";
@@ -28,5 +34,6 @@ export class CssService {
       }
       css_result += `}`;
     });
+    return css_result;
   }
 }

@@ -11,6 +11,12 @@ export class CssControllers {
   async generationCssComponentId(
     @Param('id') id: number,
   ): Promise<any> {
-    this.cssService.generatorCssComponentId(id);
+    return await this.cssService.generatorCssComponentId(id);
+  }
+  @Get('tempalte/:id')
+  async generatorCssComponentTemplateId(
+    @Param('id') id: number,
+  ): Promise<any> {
+    return await this.cssService.generatorCssComponentTemplateId(id);
   }
 }
