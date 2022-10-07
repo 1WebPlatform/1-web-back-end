@@ -18,6 +18,6 @@ export class ComponentService {
     const result = await this.pg.query(
       `select * from config.css_tempale_get_id(${id})`,
     );
-    return result.rows?.[0]?.css;
+    return result.rows?.[0];
   }
 }
