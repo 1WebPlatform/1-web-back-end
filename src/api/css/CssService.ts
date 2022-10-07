@@ -12,18 +12,29 @@ export class CssService {
     private readonly fileService: FileService
   ) { }
   public async generatorCssComponentId(id: number) {
-    const css = await this.componentService.getComponentIdSelectCss(id);
-    const textCss = this.generatorCss(JSON.parse(css));
+    const component = await this.componentService.getComponentIdSelectCss(id);  
+    const textCss = this.generatorCss(JSON.parse(this.checkCss(component.css)));
+    this.fileService.setFile(
+      `${process.env.URL_STATIC}\\style\\${component.name}`,
+      `${component.id}.css`,
+      textCss
+    );
   }
   public async generatorCssComponentTemplateId(id: number) {
-    const template = await this.componentService.getComponentTemplateCssId(id);
-    const textCss = this.generatorCss(JSON.parse(template.css));
+    const template = await this.componentService.getComponentTemplateCssId(id);   
+    let textCss = "";
+      textCss = this.generatorCss(this.checkCss(JSON.parse(template.css)));
     this.fileService.setFile(
       `${process.env.URL_STATIC}\\style\\template`,
       `${template.name}.css`,
       textCss
     );
   }
+  
+  private checkCss(css:any){
+    return css ? css: "[]"
+  }
+
   private generatorCss(style: any) {
     let css_result = "";
     style.map((elem: any) => {
