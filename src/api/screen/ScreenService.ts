@@ -8,13 +8,13 @@ export class ScreenService {
   constructor(
     @InjectClient() private readonly pg: Client,
     private readonly rightService: RightService,
-  ) {}
+  ) { }
 
   public async screen(id: number, authorization: string) {
-    const right = await this.rightService.getRightUser(authorization);   
+    const right = await this.rightService.getRightUser(authorization);
     const result = await this.pg.query(
       `select * from config.screen_get_id_component(${id})`,
-    );  
+    );
     return await this.checkScreen(right?.[0]?.right, result.rows[0]?.screen);
   }
 
@@ -44,6 +44,11 @@ export class ScreenService {
       });
       for (const key in component) {
         const element = component[key];
+        /** метка что стили есть значит должен быть файл для import */
+        if (element.style) {
+          element.file_css = true;
+        }
+        /** создание потомков по сслыке */
         if (element.id_parent) {
           if (!component[element.id_parent].children) {
             component[element.id_parent].children = [];
