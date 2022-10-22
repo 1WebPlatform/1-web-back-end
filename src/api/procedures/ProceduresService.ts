@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Client } from 'pg';
 import { InjectClient } from 'nest-postgres';
 import { ProceduresDto } from './ProceduresDto';
-import { BodyAny } from '../../interface/BodyAny';
+import { ObjectAny } from '../../interface/ObjectAny';
 import { RightService } from '../right/RightService';
 import { parserBdStructure } from '../../lib/parserBdStructure';
 
@@ -39,7 +39,7 @@ export class ProceduresService {
     return parserBdStructure(result);
   }
 
-  private static generatorBody(body: BodyAny): string {
+  private static generatorBody(body: ObjectAny): string {
     let sql = '';
     for (const key in body) {
       if (typeof body[key] === 'string') {

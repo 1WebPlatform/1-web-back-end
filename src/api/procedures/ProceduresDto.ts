@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { BodyAny } from '../../interface/BodyAny';
+import { ObjectAny } from '../../interface/ObjectAny';
 
 export class ProceduresDto {
   @ApiProperty()
@@ -7,5 +7,5 @@ export class ProceduresDto {
   @ApiProperty()
   name: string;
   @ApiProperty()
-  body: BodyAny;
+  body: ObjectAny;
 }
