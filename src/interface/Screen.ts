@@ -1,7 +1,7 @@
 import { Component } from "./Component";
 
 export interface Screen {
-    component: Component[],
+    component: Component[] | ScreenComponentObject,
     screen: any,
 }
 
