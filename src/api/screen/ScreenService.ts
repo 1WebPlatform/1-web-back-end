@@ -26,8 +26,12 @@ export class ScreenService {
    */
   private convertComponent(component: Component) {
     /** из строки в json  */
-    component.params = JSON.parse(component.params);
-    component.event = JSON.parse(component.event);
+    if (typeof component.params === "string") {
+      component.params = JSON.parse(component.params);
+    }
+    if (typeof component.event === "string") {
+      component.event = JSON.parse(component.event);
+    }
     component.schema = JSON.parse(component.schema);
     component._tec = {};
     return component;
