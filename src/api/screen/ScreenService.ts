@@ -4,6 +4,7 @@ import { RightService } from '../right/RightService';
 import { Injectable } from '@nestjs/common';
 import { Component } from 'src/interface/Component';
 import { Screen, ScreenComponentObject } from 'src/interface/Screen';
+import { TypeComponent } from 'src/interface/TypeComponent';
 
 @Injectable()
 export class ScreenService {
@@ -79,6 +80,20 @@ export class ScreenService {
     return component;
   }
 
+  private addTecTableComponent(element: Component) {
+    if (element.type === TypeComponent.table) {
+      element._tec = {
+        focus: {
+          index: {
+            indexRow: null,
+            indexCol: null
+          },
+          rows: null,
+        }
+      };
+    }
+  }
+
   private async checkScreen(right: number[], screen: Screen) {
     if (!this.checkRightScreen(right, screen)) {
       const error = await this.pg.query(`select * from tec.error_get_id(20)`);
@@ -104,6 +119,7 @@ export class ScreenService {
         this.convertComponent(element);
         this.checkFileCss(element);
         this.saveChildrenComponent(element, component);
+        this.addTecTableComponent(element);
       }
       /** Не очень хорошо изменения значения по ссылке */
       screen.component = component;
