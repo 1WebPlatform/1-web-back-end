@@ -34,7 +34,6 @@ export class ScreenService {
       component.event = JSON.parse(component.event);
     }
     component.schema = JSON.parse(component.schema);
-    component._tec = {};
     return component;
   }
   /**
@@ -81,7 +80,7 @@ export class ScreenService {
   }
 
   private addTecTableComponent(element: Component) {
-    if (element.type === TypeComponent.table) {
+    if (element.id_type === TypeComponent.table) {
       element._tec = {
         focus: {
           index: {
